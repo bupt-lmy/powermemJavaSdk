@@ -6,5 +6,25 @@ package com.powermem.sdk.model;
  * <p>Python reference: {@code Memory.delete_all(...)} in {@code src/powermem/core/memory.py}.</p>
  */
 public class DeleteAllMemoriesRequest {
+    private String userId;
+    private String agentId;
+
+    public DeleteAllMemoriesRequest() {}
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getAgentId() {
+        return agentId;
+    }
+
+    public void setAgentId(String agentId) {
+        this.agentId = agentId;
+    }
 }
 

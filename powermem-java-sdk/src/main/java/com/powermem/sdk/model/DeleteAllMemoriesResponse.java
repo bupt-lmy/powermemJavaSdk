@@ -7,5 +7,20 @@ package com.powermem.sdk.model;
  * {@code src/powermem/core/memory.py} (boolean) and benchmark server response shape.</p>
  */
 public class DeleteAllMemoriesResponse {
+    private int deletedCount;
+
+    public DeleteAllMemoriesResponse() {}
+
+    public DeleteAllMemoriesResponse(int deletedCount) {
+        this.deletedCount = deletedCount;
+    }
+
+    public int getDeletedCount() {
+        return deletedCount;
+    }
+
+    public void setDeletedCount(int deletedCount) {
+        this.deletedCount = deletedCount;
+    }
 }
 

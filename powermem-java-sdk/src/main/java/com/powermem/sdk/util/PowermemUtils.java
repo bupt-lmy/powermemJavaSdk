@@ -9,5 +9,36 @@ package com.powermem.sdk.util;
  */
 public final class PowermemUtils {
     private PowermemUtils() {}
+
+    /**
+     * Normalize either raw text or message list into a single string for embedding/storage.
+     */
+    public static String normalizeInput(String text, java.util.List<com.powermem.sdk.model.Message> messages) {
+        if (text != null && !text.isBlank()) {
+            return text;
+        }
+        if (messages == null || messages.isEmpty()) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (com.powermem.sdk.model.Message m : messages) {
+            if (m == null) {
+                continue;
+            }
+            String role = m.getRole() == null ? "" : m.getRole().trim();
+            String content = m.getContent() == null ? "" : m.getContent().trim();
+            if (content.isEmpty()) {
+                continue;
+            }
+            if (sb.length() > 0) {
+                sb.append("\n");
+            }
+            if (!role.isEmpty()) {
+                sb.append(role).append(": ");
+            }
+            sb.append(content);
+        }
+        return sb.toString();
+    }
 }
 

@@ -7,5 +7,20 @@ package com.powermem.sdk.model;
  * {@code src/powermem/core/memory.py}.</p>
  */
 public class UpdateMemoryResponse {
+    private MemoryRecord memory;
+
+    public UpdateMemoryResponse() {}
+
+    public UpdateMemoryResponse(MemoryRecord memory) {
+        this.memory = memory;
+    }
+
+    public MemoryRecord getMemory() {
+        return memory;
+    }
+
+    public void setMemory(MemoryRecord memory) {
+        this.memory = memory;
+    }
 }
 

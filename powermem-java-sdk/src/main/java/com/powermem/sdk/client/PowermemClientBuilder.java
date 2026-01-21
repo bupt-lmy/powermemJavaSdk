@@ -9,5 +9,32 @@ package com.powermem.sdk.client;
  * <p>Python reference: {@code src/powermem/config_loader.py} and {@code src/powermem/__init__.py}</p>
  */
 public class PowermemClientBuilder {
+    private com.powermem.sdk.config.MemoryConfig config;
+
+    public PowermemClientBuilder() {}
+
+    public static PowermemClientBuilder builder() {
+        return new PowermemClientBuilder();
+    }
+
+    public PowermemClientBuilder config(com.powermem.sdk.config.MemoryConfig config) {
+        this.config = config;
+        return this;
+    }
+
+    public PowermemClientBuilder fromEnv() {
+        this.config = com.powermem.sdk.config.ConfigLoader.fromEnv();
+        return this;
+    }
+
+    public PowermemClientBuilder fromDotEnvInResources() {
+        this.config = com.powermem.sdk.config.ConfigLoader.fromDotEnvInResources();
+        return this;
+    }
+
+    public PowermemClient build() {
+        com.powermem.sdk.config.MemoryConfig cfg = config == null ? new com.powermem.sdk.config.MemoryConfig() : config;
+        return new PowermemClient(cfg);
+    }
 }
 

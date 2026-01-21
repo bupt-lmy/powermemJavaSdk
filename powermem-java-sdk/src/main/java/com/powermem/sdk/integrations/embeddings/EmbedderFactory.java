@@ -7,5 +7,22 @@ package com.powermem.sdk.integrations.embeddings;
  */
 public final class EmbedderFactory {
     private EmbedderFactory() {}
+
+    public static Embedder fromConfig(com.powermem.sdk.config.EmbedderConfig config) {
+        if (config == null) {
+            return new MockEmbedder();
+        }
+        String provider = config.getProvider();
+        // Until HTTP transport + JSON codec are in place, fall back to mock for all providers.
+        if (provider == null || provider.isBlank() || "mock".equalsIgnoreCase(provider)) {
+            return new MockEmbedder();
+        }
+        // If apiKey is missing, default to mock to keep local usage working.
+        if (config.getApiKey() == null || config.getApiKey().isBlank()) {
+            return new MockEmbedder();
+        }
+        // Future: return real provider implementations.
+        return new MockEmbedder();
+    }
 }
 
